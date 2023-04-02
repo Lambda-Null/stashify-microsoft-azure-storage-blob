@@ -1,0 +1,8 @@
+detectors:
+  IrresponsibleModule:
+    enabled: false
+
+  UncommunicativeVariableName:
+    accept:
+      - e
+      - _
