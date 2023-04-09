@@ -7,6 +7,11 @@ module Stashify
     module Microsoft
       module Azure
         module Storage
+          # An implementation for interacting with files in Azure Blob
+          # Storage. The constructor needs an instance of
+          # Azure::Storage::Blob::BlobService and
+          # Azure::Storage::Blob::Container::Container in order to
+          # know which bucket to interact with.
           class Blob < Stashify::File
             def initialize(client:, container:, path:)
               @client = client

@@ -1,8 +1,6 @@
 # Stashify::Microsoft::Azure::Storage::Blob
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stashify/microsoft/azure/storage/blob`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is an implementation of the [Stashify](https://rubydoc.info/gems/stashify) abstraction for Azure Blob Storage. It operates under the assumption that the "/" in file names has the typical meaning of a path separater.
 
 ## Installation
 
@@ -22,7 +20,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This implementation is built expecting an instance of `Azure::Storage::Blob::BlobService` and `Azure::Storage::Blob::Container::Container`. The following usage is an abbreviated form to illustrate how to engage in this particular library. For a more extensive example see [Stashify's Usage](https://rubydoc.info/gems/stashify#usage).
+
+```ruby
+> require "azure/storage/blob"
+=> true
+> client = Azure::Storage::Blob::BlobService.create
+=> 
+#<Azure::Storage::Blob::BlobService:0x0000563aa41d14a8
+> container = Azure::Storage::Blob::Container::Container.new
+=> 
+...
+> container.name = "some-container"
+...
+> file = Stashify::File::Microsoft::Azure::Storage::Blob.new(client: client, 
+container: container, path: "path/to/file")
+=> 
+#<Stashify::File::Microsoft::Azure::Storage::Blob:0x0000555afaadd6f8
+...
+> file.contents
+=> "foo"
+> require "stashify/directory/microsoft/azure/storage/blob"
+=> true
+> dir = Stashify::Directory::Microsoft::Azure::Storage::Blob.new(client: client, container: container, path: "path/to")
+=> 
+#<Stashify::Directory::Microsoft::Azure::Storage::Blob:0x0000555afa40c7c0
+...
+> dir.find("file") == file
+=> true
+```
 
 ## Development
 

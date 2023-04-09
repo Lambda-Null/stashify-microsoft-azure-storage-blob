@@ -9,6 +9,12 @@ module Stashify
     module Microsoft
       module Azure
         module Storage
+          # An implementation for interacting with Azure Blob Storage
+          # as if they had directories with "/" as a path
+          # separator. In addition to a path, it also needs a
+          # Azure::Storage::Blob::BlobService and
+          # Azure::Storage::Blob::Container::Container objects
+          # representing the container the file resides within.
           class Blob < Stashify::Directory
             attr_reader :container
 
